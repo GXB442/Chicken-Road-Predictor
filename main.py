@@ -1,13 +1,19 @@
 import logging
+import os
 from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
+from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
+BOT_TOKEN = os.getenv("TOKEN")import os
+BOT_TOKEN = os.getenv("TOKEN")
+if not BOT_TOKEN:
+    raise ValueError("❌ لم يتم العثور على توكن البوت. تأكد من إضافته في متغيرات البيئة.")
 
-BOT_TOKEN = "7893647778:AAHtXBfyE7bkhd0e3HfSCqZlrNyW_dHrlvE"
+if not BOT_TOKEN:
+    raise ValueError("❌ لم يتم العثور على توكن البوت. تأكد من إضافته في متغيرات البيئة.")
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 async def predict(image_path):
-    return "أتوقع أن هذه صورة دجاجة 🐔"
+    return "🐔 أتوقع أن هذه صورة دجاجة"
 
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     photo = update.message.photo[-1]
@@ -21,9 +27,8 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def main():
     app = ApplicationBuilder().token(BOT_TOKEN).build()
     app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
-    print("Bot is running...")
     await app.run_polling()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import asyncio
     asyncio.run(main())
