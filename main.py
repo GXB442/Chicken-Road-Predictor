@@ -2,11 +2,6 @@ import logging
 import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
-BOT_TOKEN = os.getenv("TOKEN")import os
-BOT_TOKEN = os.getenv("TOKEN")
-if not BOT_TOKEN:
-    raise ValueError("❌ لم يتم العثور على توكن البوت. تأكد من إضافته في متغيرات البيئة.")
-
 if not BOT_TOKEN:
     raise ValueError("❌ لم يتم العثور على توكن البوت. تأكد من إضافته في متغيرات البيئة.")
 
